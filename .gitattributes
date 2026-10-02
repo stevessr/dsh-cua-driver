@@ -1,0 +1,2 @@
+# Unified diffs preserve the leading space on otherwise empty context lines.
+integration/*.patch whitespace=-blank-at-eol

@@ -1,0 +1,664 @@
+diff --git a/docs/config-catalog.md b/docs/config-catalog.md
+index 7c40fad913..f77e88766d 100644
+--- a/docs/config-catalog.md
++++ b/docs/config-catalog.md
+@@ -2014,7 +2014,7 @@ export interface LspLocalServerConfig {
+ ## `@deepseek-ai/dsh-mcp-client`
+ 
+ - `inject`: `tools`
+-- `source`: [`packages/mcp/mcp-client/src/index.ts:104`](../packages/mcp/mcp-client/src/index.ts)
++- `source`: [`packages/mcp/mcp-client/src/index.ts:111`](../packages/mcp/mcp-client/src/index.ts)
+ 
+ ```ts config-catalog
+ /** Configuration for one stdio or Streamable HTTP MCP server. */
+@@ -2022,6 +2022,8 @@ export type Config = StdioConfig | StreamableHttpConfig
+ 
+ /** Config for connecting to an MCP server via a spawned child process over stdio. */
+ export interface StdioConfig {
++  /** Expose this server's tools only as `run_code` functions, even in native presentation mode. */
++  programmaticOnly?: boolean
+   /** Selects child-process stdio transport. */
+   transport: 'stdio'
+   /**
+@@ -2050,6 +2052,8 @@ export interface StdioConfig {
+ 
+ /** Config for connecting to an MCP server over Streamable HTTP (SSE). */
+ export interface StreamableHttpConfig {
++  /** Expose this server's tools only as `run_code` functions, even in native presentation mode. */
++  programmaticOnly?: boolean
+   /** Selects Streamable HTTP transport. */
+   transport: 'streamable-http'
+   /**
+@@ -4009,7 +4013,7 @@ export interface Config {
+ ## `@deepseek-ai/dsh-tools`
+ 
+ - `inject`: `systemPrompt`
+-- `source`: [`packages/core/tools/src/index.ts:674`](../packages/core/tools/src/index.ts)
++- `source`: [`packages/core/tools/src/index.ts:676`](../packages/core/tools/src/index.ts)
+ 
+ ```ts config-catalog
+ /** Plugin config: how the registered tools are presented to the model. */
+diff --git a/docs/config-catalog.zh.md b/docs/config-catalog.zh.md
+index 44b5a73455..05950e997c 100644
+--- a/docs/config-catalog.zh.md
++++ b/docs/config-catalog.zh.md
+@@ -2016,7 +2016,7 @@ export interface LspLocalServerConfig {
+ ## `@deepseek-ai/dsh-mcp-client`
+ 
+ - `inject`: `tools`
+-- `source`: [`packages/mcp/mcp-client/src/index.ts:104`](../packages/mcp/mcp-client/src/index.ts)
++- `source`: [`packages/mcp/mcp-client/src/index.ts:111`](../packages/mcp/mcp-client/src/index.ts)
+ 
+ ```ts config-catalog
+ /** Configuration for one stdio or Streamable HTTP MCP server. */
+@@ -2024,6 +2024,8 @@ export type Config = StdioConfig | StreamableHttpConfig
+ 
+ /** Config for connecting to an MCP server via a spawned child process over stdio. */
+ export interface StdioConfig {
++  /** Expose this server's tools only as `run_code` functions, even in native presentation mode. */
++  programmaticOnly?: boolean
+   /** Selects child-process stdio transport. */
+   transport: 'stdio'
+   /**
+@@ -2052,6 +2054,8 @@ export interface StdioConfig {
+ 
+ /** Config for connecting to an MCP server over Streamable HTTP (SSE). */
+ export interface StreamableHttpConfig {
++  /** Expose this server's tools only as `run_code` functions, even in native presentation mode. */
++  programmaticOnly?: boolean
+   /** Selects Streamable HTTP transport. */
+   transport: 'streamable-http'
+   /**
+@@ -4011,7 +4015,7 @@ export interface Config {
+ ## `@deepseek-ai/dsh-tools`
+ 
+ - `inject`: `systemPrompt`
+-- `source`: [`packages/core/tools/src/index.ts:674`](../packages/core/tools/src/index.ts)
++- `source`: [`packages/core/tools/src/index.ts:676`](../packages/core/tools/src/index.ts)
+ 
+ ```ts config-catalog
+ /** Plugin config: how the registered tools are presented to the model. */
+diff --git a/docs/persistence-catalog.i18n.yaml b/docs/persistence-catalog.i18n.yaml
+index 555c6e52a7..e0a34e2aef 100644
+--- a/docs/persistence-catalog.i18n.yaml
++++ b/docs/persistence-catalog.i18n.yaml
+@@ -1224,8 +1224,8 @@
+   en: f43a635a14568780
+   zh: 8d22226b045122eb
+ /session-persistence-event-catalog/resolved-persistence-types/toolrestriction:
+-  en: b6f6001a25bcbf82
+-  zh: bd2b3c9fe0ad2ba8
++  en: 4d3ea4f4ddd0b648
++  zh: b6a6f11b619a30ae
+ /session-persistence-event-catalog/resolved-persistence-types/toolresultmessage:
+   en: 2258683c3cfa4ce3
+   zh: 5663aa76c911761b
+diff --git a/docs/persistence-catalog.md b/docs/persistence-catalog.md
+index 1575e2104d..01d09d12d4 100644
+--- a/docs/persistence-catalog.md
++++ b/docs/persistence-catalog.md
+@@ -4949,7 +4949,7 @@ Sources: [`packages/llm/llm/src/types.ts:127`](../packages/llm/llm/src/types.ts)
+ 
+ SHA-256: `3cfc3a56502da1f8c6153c2c56657bab4b749056968634dd0991d325ec1c919f`
+ 
+-Sources: [`packages/core/tools/src/index.ts:700`](../packages/core/tools/src/index.ts)
++Sources: [`packages/core/tools/src/index.ts:702`](../packages/core/tools/src/index.ts)
+ 
+ | Property | Presence | Type |
+ |---|---|---|
+diff --git a/docs/persistence-catalog.zh.md b/docs/persistence-catalog.zh.md
+index 6bdbb92982..5f418716cc 100644
+--- a/docs/persistence-catalog.zh.md
++++ b/docs/persistence-catalog.zh.md
+@@ -4951,7 +4951,7 @@ SHA-256: `43e311235aa537df1bacdd92d144df8a952337a76e9ac892cdf670f1a797bad8`
+ 
+ SHA-256: `3cfc3a56502da1f8c6153c2c56657bab4b749056968634dd0991d325ec1c919f`
+ 
+-来源：[`packages/core/tools/src/index.ts:700`](../packages/core/tools/src/index.ts)
++来源：[`packages/core/tools/src/index.ts:702`](../packages/core/tools/src/index.ts)
+ 
+ | 属性 | 存在性 | 类型 |
+ |---|---|---|
+diff --git a/docs/persistence-schema.json b/docs/persistence-schema.json
+index 45c1865af8..106c81ed5a 100644
+--- a/docs/persistence-schema.json
++++ b/docs/persistence-schema.json
+@@ -22708,7 +22708,7 @@
+         "packages/core/tools/src/index.ts#ToolRestriction"
+       ],
+       "sources": [
+-        "packages/core/tools/src/index.ts:700"
++        "packages/core/tools/src/index.ts:702"
+       ]
+     },
+     {
+diff --git a/docs/subsystems/tools.md b/docs/subsystems/tools.md
+index 4d03629399..d6bd37d69a 100644
+--- a/docs/subsystems/tools.md
++++ b/docs/subsystems/tools.md
+@@ -25,6 +25,8 @@ interface ToolOutputDefinition {
+ ```ts type-equiv
+ /** A registered tool: its schema plus the execution function. */
+ interface ToolDefinition extends ToolSchema {
++  /** Expose this capability only through `run_code`; direct execution is rejected in every presentation mode. */
++  readonly programmaticOnly?: boolean
+   /** Mandatory canonical output declaration. */
+   readonly output: ToolOutputDefinition
+   /**
+diff --git a/docs/subsystems/tools.zh.md b/docs/subsystems/tools.zh.md
+index 9aa6bf9656..8e62879857 100644
+--- a/docs/subsystems/tools.zh.md
++++ b/docs/subsystems/tools.zh.md
+@@ -25,6 +25,8 @@ interface ToolOutputDefinition {
+ ```ts type-equiv
+ /** A registered tool: its schema plus the execution function. */
+ interface ToolDefinition extends ToolSchema {
++  /** Expose this capability only through `run_code`; direct execution is rejected in every presentation mode. */
++  readonly programmaticOnly?: boolean
+   /** Mandatory canonical output declaration. */
+   readonly output: ToolOutputDefinition
+   /**
+diff --git a/packages/core/tools/README.i18n.yaml b/packages/core/tools/README.i18n.yaml
+index a33e9507b1..83cdffd41b 100644
+--- a/packages/core/tools/README.i18n.yaml
++++ b/packages/core/tools/README.i18n.yaml
+@@ -21,8 +21,8 @@
+   en: 02fce53c21a33d74
+   zh: 01110c4714dfd602
+ /deepseek-ai-dsh-tools/use-this-package/configure-the-presentation-mode:
+-  en: f843dfaf6ab6e19e
+-  zh: 8e3b8816a4e51e7b
++  en: 413312de9eac3510
++  zh: cdf55ee87cd3d30a
+ /deepseek-ai-dsh-tools/use-this-package/restrict-tools-per-agent:
+   en: c6f98b2283cc2e47
+   zh: c2cdce5d13473f15
+diff --git a/packages/core/tools/README.md b/packages/core/tools/README.md
+index b96592b137..25c5c7e5f6 100644
+--- a/packages/core/tools/README.md
++++ b/packages/core/tools/README.md
+@@ -76,6 +76,8 @@ The `mode` config decides what the model sees: `native` (every visible schema),
+ 
+ The generated [configuration catalog](../../../docs/config-catalog.md#deepseek-aidsh-tools) is the exhaustive source for every accepted field. Non-native modes require a composed `ctx.ptcRuntime` whose language has a registered SDK renderer; an agent preset selects its own presentation with [`dsh-agent-tool-presentation`](../agent-tool-presentation/README.md), and one agent can shadow the default with `presentAs(mode)`.
+ 
++Definitions marked `programmaticOnly: true` are callable only through `run_code`, regardless of presentation mode. Under `native`, those definitions alone enter the generated SDK and add `run_code`; other tools retain their native schemas. The executor rejects direct calls, including under `both`. A supported PTC runtime is required when such a capability is visible. `supportsProgrammaticOnly` advertises this support to external plugins.
++
+ ### Restrict tools per agent
+ 
+ `ctx.tools.restrict(filter)` applies an allow or deny mask to the global tools one agent inherits; masks intersect, scoped registrations stay visible, and the restriction lifts when disposed. `ctx.tools.get(name, scope)` resolves a tool as one scope sees it. A Host-local presenter consumer passes the calling agent when it must match the definition that executed. `ctx.tools.schemas(scope)` returns the visible schemas without the `execute` functions.
+diff --git a/packages/core/tools/README.zh.md b/packages/core/tools/README.zh.md
+index dfd729c2bc..7c8b7f2043 100644
+--- a/packages/core/tools/README.zh.md
++++ b/packages/core/tools/README.zh.md
+@@ -76,6 +76,8 @@ ctx.tools.register(defineTool({
+ 
+ 生成的[配置目录](../../../docs/config-catalog.zh.md#deepseek-aidsh-tools)是每个受支持字段的穷尽式真源。非原生模式要求已组合的 `ctx.ptcRuntime` 且其语言有已注册的 SDK 渲染器；agent preset 通过 [`dsh-agent-tool-presentation`](../agent-tool-presentation/README.zh.md) 自行选择呈现方式，单个 agent 可用 `presentAs(mode)` 遮蔽默认值。
+ 
++标记为 `programmaticOnly: true` 的工具只能通过 `run_code` 调用，不受呈现模式影响。在 `native` 模式下，仅这些工具进入生成的 SDK，并增加 `run_code`；其余工具保留原生工具 schema。执行器拒绝对这些工具的直接调用，`both` 模式也不例外。只要此类能力可见，就需要支持的 PTC 运行时。`supportsProgrammaticOnly` 向外部插件声明这项支持。
++
+ ### 按 agent 限制工具
+ 
+ `ctx.tools.restrict(filter)` 对单个 agent 继承的全局工具应用允许或拒绝掩码；掩码取交集，作用域注册保持可见，限制在 dispose（资源释放）时解除。`ctx.tools.get(name, scope)` 按一个作用域的视角解析工具。使用 Host 本地展示转换器的消费方如需匹配实际执行的定义，会传入发起调用的 agent。`ctx.tools.schemas(scope)` 返回可见 schema（不含 `execute` 函数）。
+diff --git a/packages/core/tools/src/index.ts b/packages/core/tools/src/index.ts
+index ca89f370fe..29476fa772 100644
+--- a/packages/core/tools/src/index.ts
++++ b/packages/core/tools/src/index.ts
+@@ -221,6 +221,8 @@ export interface ToolOutputDefinition {
+ 
+ /** A registered tool: its schema plus the execution function. */
+ export interface ToolDefinition extends ToolSchema {
++  /** Expose this capability only through `run_code`; direct execution is rejected in every presentation mode. */
++  readonly programmaticOnly?: boolean
+   /** Mandatory canonical output declaration. */
+   readonly output: ToolOutputDefinition
+   /**
+@@ -805,6 +807,8 @@ function resolveMaxParallelSubCalls(value: number | undefined): number {
+  * one visibility resolver feeds presentation, lookup, and dispatch.
+  */
+ export class ToolRuntime extends Service {
++  /** Whether definitions can require programmatic-only execution independently of the deployment mode. */
++  readonly supportsProgrammaticOnly: true = true
+   static inject = ['systemPrompt']
+ 
+   static Config: z<Config> = z.object({
+@@ -852,10 +856,8 @@ export class ToolRuntime extends Service {
+     this.defaultMode = config.mode ?? 'native'
+     this.maxParallelSubCalls = resolveMaxParallelSubCalls(config.maxParallelSubCalls)
+     ctx.systemPrompt.tools(context => this.wireSchemas(context.scope))
+-    if (this.defaultMode !== 'native') {
+-      ctx.systemPrompt.section(this.collapseSection())
+-      ctx.systemPrompt.section(this.sdkSection())
+-    }
++    ctx.systemPrompt.section(this.collapseSection())
++    ctx.systemPrompt.section(this.sdkSection())
+   }
+ 
+   /**
+@@ -884,13 +886,8 @@ export class ToolRuntime extends Service {
+   }
+ 
+   /**
+-   * The generated-SDK prompt section, registered globally by a PTC mode
+-   * deployment and per scope by {@link presentAs}.
+-   *
+-   * The body regenerates from the CALLING scope, and renders empty for an
+-   * agent presenting natively — an agent that opted out under a PTC mode
+-   * deployment still sees the global registration, and an empty section is
+-   * dropped from the rendered prompt.
++   * Generate the calling scope's SDK. Native scopes include only programmatic-only
++   * capabilities; other modes include all visible capabilities. Empty text adds no prompt tokens.
+    * @returns the section registration.
+    */
+   private sdkSection(): PromptSection {
+@@ -901,7 +898,7 @@ export class ToolRuntime extends Service {
+       // Regenerate from the calling scope's visible tools in stable order.
+       text: (context) => {
+         const mode = this.modeFor(context.scope)
+-        if (mode === 'native') return ''
++        if (mode === 'native' && this.sdkSchemas(context.scope).length === 0) return ''
+         const runtime = this.requirePtcRuntime(mode)
+         // Own-property read: a language like `toString`/`constructor` would
+         // otherwise resolve an inherited Object.prototype member as a renderer.
+@@ -956,6 +953,7 @@ export class ToolRuntime extends Service {
+       peekRuntime: () => this.ctx.get('ptcRuntime'),
+       maxParallel: this.maxParallelSubCalls,
+       shapeDispatchLog: dispatch => this.shapeDispatchLog(dispatch),
++      bindingSchemas: scope => this.sdkSchemas(scope).map(({ output: _output, ...schema }) => schema),
+     })
+     return this.ptcTransport
+   }
+@@ -1008,24 +1006,24 @@ export class ToolRuntime extends Service {
+   private wireSchemas(scope?: ScopeKey): ToolProviderResult {
+     const view = this.view(scope)
+     const mode = this.modeFor(scope)
+-    if (mode === 'native') {
+-      const schemas = [...view.visible.values()].map(definition => this.schemaOf(definition, false))
+-      return { schemas, knownNames: [...view.knownNames] }
+-    }
+     // Validate the runtime language BEFORE projecting schemas: schemaOf reads
+     // run_code's language-aware description/parameters getters, whose own
+     // flavor-table guard would otherwise surface first. This keeps the
+     // renderer-table rejection the canonical assembly-time error for a
+     // language with no SDK renderer.
+-    this.requirePtcRuntime(mode)
+-    const schemas = [...view.visible.values()].map(definition => this.schemaOf(definition, false))
++    if (view.visible.has(RUN_CODE_NAME)) this.requirePtcRuntime(mode)
++    const definitions = [...view.visible.values()]
++    const schemas = definitions.filter(definition => !definition.programmaticOnly).map(definition => this.schemaOf(definition, false))
+     if (mode === 'ptc') {
+       return {
+         schemas: schemas.filter(schema => schema.name === RUN_CODE_NAME),
+         knownNames: [RUN_CODE_NAME],
+       }
+     }
+-    return { schemas, knownNames: [...view.knownNames, RUN_CODE_NAME] }
++    const hidden = new Set(definitions.filter(definition => definition.programmaticOnly).map(definition => definition.name))
++    const knownNames = [...view.knownNames].filter(name => !hidden.has(name))
++    if (view.visible.has(RUN_CODE_NAME)) knownNames.push(RUN_CODE_NAME)
++    return { schemas, knownNames }
+   }
+ 
+   /**
+@@ -1045,6 +1043,7 @@ export class ToolRuntime extends Service {
+   private requirePtcRuntime(mode: ToolPresentationMode): PtcRuntime {
+     const runtime = this.ctx.get('ptcRuntime')
+     if (!runtime) {
++      if (mode === 'native') throw new Error('dsh-tools: programmatic-only tools require a PTC runtime — load @deepseek-ai/dsh-ptc-runtime-node')
+       throw new Error(`dsh-tools: mode "${mode}" requires a PTC runtime — load a ctx.ptcRuntime implementation (e.g. @deepseek-ai/dsh-ptc-runtime-node) or set tools mode to "native"`)
+     }
+     if (!Object.hasOwn(SDK_RENDERERS, runtime.language)) {
+@@ -1212,7 +1211,7 @@ export class ToolRuntime extends Service {
+     // an invariant assertion as well as protection against future layer
+     // changes. Per scope: a native agent must not find `run_code` in its
+     // dispatch table because some other agent in the process presents it.
+-    if (this.modeFor(scope) !== 'native') {
++    if (this.modeFor(scope) !== 'native' || [...visible.values()].some(definition => definition.programmaticOnly)) {
+       visible.set(RUN_CODE_NAME, this.requirePtcTransport())
+     }
+     return { visible, knownNames, restrictableNames }
+@@ -1264,7 +1263,7 @@ export class ToolRuntime extends Service {
+   /** Project visible callable tools onto the generated PTC mode SDK contract. */
+   private sdkSchemas(scope?: ScopeKey): ToolSdkSchema[] {
+     return [...this.view(scope).visible.values()]
+-      .filter(definition => definition.name !== RUN_CODE_NAME)
++      .filter(definition => definition.name !== RUN_CODE_NAME && (this.modeFor(scope) !== 'native' || definition.programmaticOnly))
+       .map((definition): ToolSdkSchema => {
+         const output = snapshotJsonValue(definition.output.schema)
+         /* v8 ignore next -- registration already validated and retained this schema as lossless JSON. */
+@@ -1349,7 +1348,7 @@ export class ToolRuntime extends Service {
+    * @param nested - whether the call is a transport sub-dispatch, not a model-direct call.
+    */
+   private collapses(name: string, scope: ScopeKey | undefined, nested: boolean): boolean {
+-    return !nested && this.modeFor(scope) === 'ptc' && name !== RUN_CODE_NAME
++    return !nested && name !== RUN_CODE_NAME && (this.modeFor(scope) === 'ptc' || this.get(name, scope)?.programmaticOnly === true)
+   }
+ 
+   /**
+diff --git a/packages/core/tools/src/ptc.ts b/packages/core/tools/src/ptc.ts
+index 00d6abcd03..d2e1aca06d 100644
+--- a/packages/core/tools/src/ptc.ts
++++ b/packages/core/tools/src/ptc.ts
+@@ -19,6 +19,7 @@ import type { ContentBlock, ToolCallId, ToolSchema } from '@deepseek-ai/dsh-llm'
+ import type { PtcBindingFunction, PtcRunResult, PtcRunSandbox, PtcRuntime } from '@deepseek-ai/dsh-ptc-runtime'
+ import { approveEscalation, ESCALATION_TARGETS, validateEscalationArgs } from '@deepseek-ai/dsh-sandbox'
+ import type { SandboxExecutionPolicy } from '@deepseek-ai/dsh-sandbox'
++import type { ScopeKey } from '@deepseek-ai/dsh-scope'
+ import type { ApprovalService } from '@deepseek-ai/dsh-user-approval'
+ import { deepFreeze, snapshotJsonValue, type JsonValue } from '@deepseek-ai/dsh-util-values'
+ import { defineTool, parameterSchemaSpecToJsonSchema } from './schema.ts'
+@@ -300,6 +301,8 @@ type RunCodeOutput = { logs: string[]; result?: JsonValue; sandbox?: PtcRunSandb
+  * off its public service API and flow here as closures instead.
+  */
+ export interface RunCodeBridgeOptions {
++  /** Resolves exactly the capabilities declared by this calling scope's generated SDK. */
++  bindingSchemas: (scope?: ScopeKey) => readonly ToolSchema[]
+   /** Reads the approval channel when a program requests a wider sandbox mode. */
+   peekApprover: () => ApprovalService | undefined
+   /** Resolves standing Session authority only for a runtime that enforces file policy. */
+@@ -686,7 +689,7 @@ export function createRunCodeTool(registry: ToolRuntime, options: RunCodeBridgeO
+       // restricted globals vanish) — the same view the SDK section declared,
+       // so a program can bind exactly what its prompt promised; sub-dispatch
+       // re-resolves per call through the same view (exec.agent threads down).
+-      for (const schema of registry.schemas(exec.agent)) {
++      for (const schema of options.bindingSchemas(exec.agent)) {
+         if (schema.name === RUN_CODE_NAME) continue
+         Object.defineProperty(functions, schema.name, { enumerable: true, value: binding(deepFreeze(schema)) })
+       }
+diff --git a/packages/core/tools/tests/ptc.spec.ts b/packages/core/tools/tests/ptc.spec.ts
+index 2436c16e5a..4f3dc3f890 100644
+--- a/packages/core/tools/tests/ptc.spec.ts
++++ b/packages/core/tools/tests/ptc.spec.ts
+@@ -84,9 +84,9 @@ async function mintAgentScope(ctx: Context, name = 'scoped'): Promise<{ scope: S
+ }
+ 
+ /** Register a trivial echo tool; returns the calls it received. */
+-function registerEcho(ctx: Context, name = 'echo'): unknown[] {
++function registerEcho(ctx: Context, name = 'echo', programmaticOnly = false): unknown[] {
+   const calls: unknown[] = []
+-  ctx.tools.register(defineTool({
++  const definition = defineTool({
+     name,
+     description: `Echo tool ${name}.`,
+     parameters: { value: { type: 'string', required: true } },
+@@ -98,7 +98,8 @@ function registerEcho(ctx: Context, name = 'echo'): unknown[] {
+       calls.push(args)
+       return Promise.resolve(`${name}:${args.value}`)
+     },
+-  }))
++  })
++  ctx.tools.register({ ...definition, programmaticOnly })
+   return calls
+ }
+ 
+@@ -131,6 +132,44 @@ async function runCode(
+ }
+ 
+ describe('mode-aware wire contribution', () => {
++  it.each(['native', 'both', 'ptc'] as const)('restricts programmatic-only tools to SDK calls under %s', async (mode) => {
++    const { ctx, runtime } = await setup({ mode })
++    try {
++      const native = registerEcho(ctx, 'native_echo')
++      const code = registerEcho(ctx, 'code_echo', true)
++      const assembly = await ctx.systemPrompt.assemble()
++      expect(assembly.tools.map(tool => tool.name)).toEqual(mode === 'ptc' ? ['run_code'] : ['native_echo', 'run_code'])
++      expect(renderPrompt(assembly)).toContain('code_echo')
++      runtime.behavior = async (request) => {
++        const functions = request.bindings?.[0]?.functions
++        expect(Object.keys(functions ?? {})).toEqual(mode === 'native' ? ['code_echo'] : ['native_echo', 'code_echo'])
++        return { logs: [], value: await functions!.code_echo!({ value: 'nested' }) }
++      }
++      const direct = await ctx.tools.execute({ name: 'code_echo', callId: ToolCallId('direct'), arguments: { value: 'denied' }, signal: testToolSignal })
++      expect(direct.isError).toBe(true)
++      expect(code).toEqual([])
++      const result = await runCode(ctx, 'test')
++      expect(result.isError).not.toBe(true)
++      expect(code).toEqual([{ value: 'nested' }])
++      expect(native).toEqual([])
++    } finally { await ctx.fiber.dispose() }
++  })
++
++  it('requires a runtime only while a programmatic-only tool is visible and removes its SDK on disposal', async () => {
++    const { ctx } = await setup({ mode: 'native', runtime: false })
++    try {
++      const fiber = ctx.plugin({ inject: ['tools'], apply(inner: Context) { registerEcho(inner, 'code_echo', true) } })
++      await fiber.await()
++      await expect(ctx.systemPrompt.assemble()).rejects.toThrow('programmatic-only tools require a PTC runtime')
++      const { scope, agent } = await mintAgentScope(ctx)
++      scope.ctx.tools.restrict({ deny: ['code_echo'] })
++      expect((await ctx.systemPrompt.assemble({ scope: agent })).tools).toEqual([])
++      await fiber.dispose()
++      expect((await ctx.systemPrompt.assemble()).tools).toEqual([])
++      expect(ctx.tools.get('run_code')).toBeUndefined()
++    } finally { await ctx.fiber.dispose() }
++  })
++
+   it.each([
+     { mode: 'ptc', language: 'typescript' },
+     { mode: 'both', language: 'typescript' },
+@@ -168,7 +207,7 @@ describe('mode-aware wire contribution', () => {
+     registerEcho(ctx)
+     const assembly = await systemPrompt.assemble()
+     expect(assembly.tools.map(tool => tool.name)).toEqual(['echo'])
+-    expect(assembly.sections.some(section => section.name === 'tools:sdk')).toBe(false)
++    expect(assembly.sections.some(section => section.name === 'tools:sdk' && section.text.length > 0)).toBe(false)
+   })
+ 
+   it("mode 'ptc' contributes exactly [run_code] plus the SDK section declaring the other tools", async () => {
+@@ -250,7 +289,7 @@ describe('mode-aware wire contribution', () => {
+     }, { prepend: true })
+ 
+     const assembly = await systemPrompt.assemble()
+-    expect(assembly.sections.some(section => section.name === 'tools:sdk')).toBe(false)
++    expect(assembly.sections.some(section => section.name === 'tools:sdk' && section.text.length > 0)).toBe(false)
+     expect(assembly.tools.some(tool => tool.name === RUN_CODE_NAME)).toBe(false)
+   })
+ 
+@@ -526,7 +565,7 @@ describe('mode-aware wire contribution', () => {
+     await fiber.dispose()
+     const assembly = await ctx.systemPrompt.assemble()
+     expect(assembly.tools).toEqual([])
+-    expect(assembly.sections.some(section => section.name === 'tools:sdk')).toBe(false)
++    expect(assembly.sections.some(section => section.name === 'tools:sdk' && section.text.length > 0)).toBe(false)
+   })
+ })
+ 
+@@ -1927,7 +1966,7 @@ describe('the run_code dispatch bridge', () => {
+     const registry = new ToolRuntime(ctx)
+     expect(registry.get(RUN_CODE_NAME)).toBeUndefined()
+     const assembly = await ctx.systemPrompt.assemble()
+-    expect(assembly.sections.some(section => section.name === 'tools:sdk')).toBe(false)
++    expect(assembly.sections.some(section => section.name === 'tools:sdk' && section.text.length > 0)).toBe(false)
+   })
+   it('denies a model-direct native-tool call under PTC mode as UNKNOWN_TOOL', async () => {
+     const ctx = new Context()
+@@ -2001,7 +2040,7 @@ describe('per-agent presentation', () => {
+     // and the global view behind it — still sees the native catalog.
+     const native = await systemPrompt.assemble()
+     expect(native.tools.map(tool => tool.name)).toEqual(['echo'])
+-    expect(native.sections.some(section => section.name === 'tools:sdk')).toBe(false)
++    expect(native.sections.some(section => section.name === 'tools:sdk' && section.text.length > 0)).toBe(false)
+   })
+ 
+   it('inherits a STANDING preset scope\'s mode down the chain, agents beside it unaffected', async () => {
+@@ -2093,7 +2132,7 @@ describe('per-agent presentation', () => {
+ 
+     const assembly = await systemPrompt.assemble({ scope: agent })
+     expect(assembly.tools.map(tool => tool.name)).toEqual(['echo'])
+-    expect(assembly.sections.some(section => section.name === 'tools:sdk')).toBe(false)
++    expect(assembly.sections.some(section => section.name === 'tools:sdk' && section.text.length > 0)).toBe(false)
+   })
+ 
+   it('refuses a second declaration for the same agent', async () => {
+diff --git a/packages/extensions/tool-cordis/src/api-catalog.ts b/packages/extensions/tool-cordis/src/api-catalog.ts
+index a7043c75ef..6db11c084b 100644
+--- a/packages/extensions/tool-cordis/src/api-catalog.ts
++++ b/packages/extensions/tool-cordis/src/api-catalog.ts
+@@ -3266,6 +3266,11 @@ export const SERVICE_API: readonly ServiceApiEntry[] = [
+     summary: 'Tool registry and execution pipeline.',
+     description: 'Tool registry and execution pipeline. Scoped registrations shadow globals; one visibility resolver feeds presentation, lookup, and dispatch.',
+     methods: [
++      {
++        signature: 'readonly supportsProgrammaticOnly: true = true',
++        description: 'Whether definitions can require programmatic-only execution independently of the deployment mode.',
++        parameters: [],
++      },
+       {
+         signature: 'presentAs(mode: ToolPresentationMode): () => void',
+         description: 'Present the calling scope\'s tools in `mode` instead of the deployment default. Nearest scope on the chain wins, so a preset\'s standing declaration covers every agent joined under it.\n\nScoped only, and one declaration per scope: this is how an agent preset composes PTC mode agents beside native ones in the same process, and a process-global override would be the `mode` config field instead.',
+@@ -7599,7 +7604,7 @@ export const TYPE_API: readonly TypeApiEntry[] = [
+   },
+   {
+     name: 'ToolDefinition',
+-    declaration: 'export interface ToolDefinition extends ToolSchema {\n    readonly output: ToolOutputDefinition;\n    execute(args: unknown, exec: ToolRunContext): Promise<unknown>;\n    projectContent?(exec: Readonly<ToolExecution>, result: Readonly<ToolExecutionResult>): ContentBlock[] | undefined;\n    finalizeContent?(exec: Readonly<ToolExecution>, result: Readonly<ToolExecutionResult>): ContentBlock[] | undefined;\n    timeoutMs?: number;\n    isConcurrencySafe?(args: unknown): boolean;\n    presentCall?(args: unknown): ToolCallView | undefined;\n    presentResult?(args: unknown, result: ToolResult): ToolResultView | undefined;\n}',
++    declaration: 'export interface ToolDefinition extends ToolSchema {\n    readonly programmaticOnly?: boolean;\n    readonly output: ToolOutputDefinition;\n    execute(args: unknown, exec: ToolRunContext): Promise<unknown>;\n    projectContent?(exec: Readonly<ToolExecution>, result: Readonly<ToolExecutionResult>): ContentBlock[] | undefined;\n    finalizeContent?(exec: Readonly<ToolExecution>, result: Readonly<ToolExecutionResult>): ContentBlock[] | undefined;\n    timeoutMs?: number;\n    isConcurrencySafe?(args: unknown): boolean;\n    presentCall?(args: unknown): ToolCallView | undefined;\n    presentResult?(args: unknown, result: ToolResult): ToolResultView | undefined;\n}',
+   },
+   {
+     name: 'ToolDispatchExecution',
+@@ -7691,7 +7696,7 @@ export const TYPE_API: readonly TypeApiEntry[] = [
+   },
+   {
+     name: 'ToolRuntime',
+-    declaration: 'export class ToolRuntime extends Service {\n    static inject;\n    static Config: z<Config>;\n    readonly [TOOL_RUNTIME_SCHEDULER]: ToolRuntimeScheduler;\n    constructor(ctx: Context, config: Config = {});\n    presentAs(mode: ToolPresentationMode): () => void;\n    register(definition: ToolDefinition): () => void;\n    restrict(filter: ToolRestriction): () => void;\n    guard(guard: ToolGuard): () => void;\n    get(name: string, scope?: ScopeKey): ToolDefinition | undefined;\n    schemas(scope?: ScopeKey): ToolSchema[];\n    executionMode(exec: ToolExecutionInput): ToolExecutionMode;\n    async execute(exec: ToolExecutionInput): Promise<ToolExecutionResult>;\n}',
++    declaration: 'export class ToolRuntime extends Service {\n    readonly supportsProgrammaticOnly: true;\n    static inject;\n    static Config: z<Config>;\n    readonly [TOOL_RUNTIME_SCHEDULER]: ToolRuntimeScheduler;\n    constructor(ctx: Context, config: Config = {});\n    presentAs(mode: ToolPresentationMode): () => void;\n    register(definition: ToolDefinition): () => void;\n    restrict(filter: ToolRestriction): () => void;\n    guard(guard: ToolGuard): () => void;\n    get(name: string, scope?: ScopeKey): ToolDefinition | undefined;\n    schemas(scope?: ScopeKey): ToolSchema[];\n    executionMode(exec: ToolExecutionInput): ToolExecutionMode;\n    async execute(exec: ToolExecutionInput): Promise<ToolExecutionResult>;\n}',
+   },
+   {
+     name: 'ToolRuntimeScheduler',
+diff --git a/packages/mcp/mcp-client/README.i18n.yaml b/packages/mcp/mcp-client/README.i18n.yaml
+index 9e74c74c4b..d4881394d8 100644
+--- a/packages/mcp/mcp-client/README.i18n.yaml
++++ b/packages/mcp/mcp-client/README.i18n.yaml
+@@ -18,8 +18,8 @@
+   en: e77871d58566601a
+   zh: c5ef229d22eb3ebf
+ /deepseek-ai-dsh-mcp-client/use-this-package/minimal-configuration:
+-  en: 4d8b58f6a5e0c3f1
+-  zh: 28e1c06aeef33131
++  en: 8adb8d65d81e57d5
++  zh: 8bdd55b72746df2f
+ /deepseek-ai-dsh-mcp-client/use-this-package/tool-naming-and-coexistence:
+   en: 75ae9745d5b04796
+   zh: 8ae5b8ca6e73296e
+diff --git a/packages/mcp/mcp-client/README.md b/packages/mcp/mcp-client/README.md
+index d9f81a79b8..1f3140364f 100644
+--- a/packages/mcp/mcp-client/README.md
++++ b/packages/mcp/mcp-client/README.md
+@@ -70,6 +70,8 @@ The generated [configuration catalog](../../../docs/config-catalog.md#deepseek-a
+ 
+ After startup, the server's tools appear as `mcp__<serverName>__<tool>` — try a prompt that uses one. If the initial connection fails, the harness still starts but no tools from that server appear, and an error is logged. Setting `failOnStartupError: true` rejects plugin activation; [app-boot's startup policy](../../boot/app-boot/README.md) still permits an optional MCP entry to fail without aborting the harness.
+ 
++Set `programmaticOnly: true` to expose this server's tools exclusively through the generated `run_code` SDK, without changing the presentation of other servers. A PTC runtime is required. ToolRuntime enforces the restriction on direct dispatch, not just schema emission. `supportsProgrammaticOnly` identifies compatible bridge versions; shared MCP resource tools remain separately owned by `dsh-mcp-resources`.
++
+ ### Tool naming and coexistence
+ 
+ The model sees each tool under a stable server-qualified name: `mcp__<serverName>__<rawName>`, for example `mcp__github__create_issue` — the same naming shape Claude Code and Codex use. Names stay stable while the server keeps the same tool name, so session history and permission rules survive restarts and reloads. Two servers can both offer a tool named `search` and coexist as `mcp__github__search` and `mcp__web__search`.
+diff --git a/packages/mcp/mcp-client/README.zh.md b/packages/mcp/mcp-client/README.zh.md
+index d6f3e9337c..850a575dcc 100644
+--- a/packages/mcp/mcp-client/README.zh.md
++++ b/packages/mcp/mcp-client/README.zh.md
+@@ -70,6 +70,8 @@ kind: "package-reference"
+ 
+ 启动后，服务器的工具会以 `mcp__<serverName>__<tool>` 形式出现——试着用一条提示词调用其中一个。如果初始连接失败，harness 仍会启动，但该服务器的工具不会出现，并会记录一条错误。设置 `failOnStartupError: true` 会拒绝插件激活；[app-boot 的启动策略](../../boot/app-boot/README.zh.md)仍允许可选 MCP 配置项失败，而不中止 harness。
+ 
++设置 `programmaticOnly: true` 可将此服务器的工具仅通过生成的 `run_code` SDK 暴露，而不改变其他服务器的呈现方式。此模式需要 PTC 运行时；ToolRuntime 在直接执行时也会拒绝调用，不只是隐藏 schema。`supportsProgrammaticOnly` 标识支持该功能的桥接版本；共享 MCP 资源工具仍由 `dsh-mcp-resources` 单独管理。
++
+ ### 工具命名与共存
+ 
+ 模型看到每个工具都带有稳定的服务器限定名称：`mcp__<serverName>__<rawName>`，例如 `mcp__github__create_issue`——与 Claude Code 和 Codex 使用的命名形态相同。只要服务器保持相同的工具名称，名称就保持不变，因此会话历史与权限规则在重启和重载后仍然有效。两个服务器可以同时提供名为 `search` 的工具，分别以 `mcp__github__search` 和 `mcp__web__search` 共存。
+diff --git a/packages/mcp/mcp-client/src/connection.ts b/packages/mcp/mcp-client/src/connection.ts
+index 9a4ec9123a..f02317ddfd 100644
+--- a/packages/mcp/mcp-client/src/connection.ts
++++ b/packages/mcp/mcp-client/src/connection.ts
+@@ -128,6 +128,7 @@ export function startConnection(ctx: Context, config: Config, policy: ResolvedRe
+   const label = `mcp-client(${config.serverName})`
+   const incompleteDisposalMessage = `${label}: transport closure could not be confirmed during disposal — server shutdown may be incomplete`
+   const opts: ToolBridgeOptions = {
++    programmaticOnly: () => config.programmaticOnly ?? false,
+     registrationFailure: 'contain',
+     serverName: config.serverName,
+     toolCallTimeoutMs: config.toolCallTimeoutMs,
+diff --git a/packages/mcp/mcp-client/src/index.ts b/packages/mcp/mcp-client/src/index.ts
+index 3f89532b91..edb8f2aa82 100644
+--- a/packages/mcp/mcp-client/src/index.ts
++++ b/packages/mcp/mcp-client/src/index.ts
+@@ -30,6 +30,9 @@ export type { ReconnectConfig, ResolvedReconnectPolicy } from './connection.ts'
+ /** Cordis plugin name used by loader diagnostics. */
+ export const name = 'mcp-client'
+ 
++/** Whether the bridge forwards per-server programmatic-only exposure to the tool executor. */
++export const supportsProgrammaticOnly = true
++
+ /** Services required by this plugin. */
+ export const inject = ['tools']
+ 
+@@ -50,6 +53,8 @@ const activeServerNames = new WeakMap<object, Set<string>>()
+ 
+ /** Config for connecting to an MCP server via a spawned child process over stdio. */
+ export interface StdioConfig {
++  /** Expose this server's tools only as `run_code` functions, even in native presentation mode. */
++  programmaticOnly?: boolean
+   /** Selects child-process stdio transport. */
+   transport: 'stdio'
+   /**
+@@ -78,6 +83,8 @@ export interface StdioConfig {
+ 
+ /** Config for connecting to an MCP server over Streamable HTTP (SSE). */
+ export interface StreamableHttpConfig {
++  /** Expose this server's tools only as `run_code` functions, even in native presentation mode. */
++  programmaticOnly?: boolean
+   /** Selects Streamable HTTP transport. */
+   transport: 'streamable-http'
+   /**
+@@ -119,6 +126,7 @@ const Reconnect: z<ReconnectConfig> = z.object({
+ export const Config = z.union([
+   z.object({
+     transport: z.const('stdio'),
++    programmaticOnly: z.boolean(),
+     serverName: z.string().required().pattern(SERVER_NAME_PATTERN),
+     command: z.string().required(),
+     args: z.array(String).default([]),
+@@ -131,6 +139,7 @@ export const Config = z.union([
+   }),
+   z.object({
+     transport: z.const('streamable-http'),
++    programmaticOnly: z.boolean(),
+     serverName: z.string().required().pattern(SERVER_NAME_PATTERN),
+     url: z.string().required(),
+     headers: z.dict(String).default({}),
+diff --git a/packages/mcp/mcp-client/src/tools.ts b/packages/mcp/mcp-client/src/tools.ts
+index 9e7b5c0ab5..bdb625f693 100644
+--- a/packages/mcp/mcp-client/src/tools.ts
++++ b/packages/mcp/mcp-client/src/tools.ts
+@@ -26,6 +26,8 @@ import type { JsonValue } from '@deepseek-ai/dsh-util-values'
+ 
+ /** Resolved options relevant to tool bridging. */
+ export interface ToolBridgeOptions {
++  /** Whether this server is callable only through the generated `run_code` SDK. */
++  readonly programmaticOnly?: () => boolean
+   /** Whether a registry conflict is contained or rejects this synchronization. */
+   registrationFailure: 'contain' | 'throw'
+   serverName: string
+@@ -129,6 +131,7 @@ export async function syncTools(
+       )
+     }
+     definitions.set(publicName, createMcpToolDefinition(ctx, {
++      get programmaticOnly() { return opts.programmaticOnly?.() ?? false },
+       name: publicName,
+       rawName: tool.name,
+       description: tool.description ?? '',
+@@ -194,6 +197,8 @@ function supportedOutputSchema(candidate: unknown): JsonSchemaNode | undefined {
+ 
+ /** One upstream MCP tool and the callback that obtains its raw protocol result. */
+ export interface McpToolDefinitionOptions {
++  /** Live exposure policy, read at prompt assembly and execution. */
++  readonly programmaticOnly?: boolean
+   /** ToolRuntime name presented to the model. */
+   name: string
+   /** Upstream name used in result diagnostics. */
+@@ -230,6 +235,7 @@ export function createMcpToolDefinition(
+   const projections = new WeakMap<ToolExecution, PreparedProjection>()
+   return {
+     name,
++    get programmaticOnly() { return options.programmaticOnly ?? false },
+     description,
+     parameters: inputSchema,
+     output: createOutput(rawName, supportedOutputSchema(options.outputSchema)),

@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Cua Driver 计算机操作",
+    "description": "安装、更新 Cua Driver，并通过 MCP 工具或 TypeScript 调用使用它。"
+  }
+}

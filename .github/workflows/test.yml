@@ -1,0 +1,39 @@
+name: Tests
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  stock:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm typecheck
+      - run: pnpm lint
+      - run: pnpm test
+  integration:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Prepare pinned Harness source
+        run: |
+          git clone --filter=blob:none https://github.com/stevessr/deepseek-harness.git .harness
+          git -C .harness checkout "$(cat integration/harness-revision.txt)"
+          git -C .harness apply --check ../integration/harness-programmatic-tools.patch
+          git -C .harness apply ../integration/harness-programmatic-tools.patch
+          pnpm --dir .harness install --frozen-lockfile
+      - run: pnpm --dir .harness exec vitest run packages/core/tools/tests/ptc.spec.ts packages/mcp/mcp-client/tests
+      - run: pnpm test:integration
+        env:
+          DSH_HARNESS_ROOT: .harness
