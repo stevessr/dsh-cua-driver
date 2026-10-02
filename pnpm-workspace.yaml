@@ -1,5 +1,6 @@
 packages:
   - .
+minimumReleaseAge: 1440
 allowBuilds:
   '@deepseek-ai/dsh-subprocess-local': true
   esbuild: true
